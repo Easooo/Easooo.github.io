@@ -177,7 +177,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>#神经网络架构搜索（NAS）综述</p>
+<p>##1.自动机器学习(AutoML)</p>
+<p>  机器学习在具体的场景应用上是一个极大的工程，这个工程在实现的过程中需要涉及到大量的人工干预及先验知识，例如特征工程、模型选择和算法选择等。特征工程在机器学习中有着极其重要的地位，对相关特征进行构造、挖掘等工作对于模型的表现优劣有着决定性作用[1]；模型选择则包括了模型类型的选择和对应的参数设置；算法选择则涉及到不同的优化算法，如SGD[2]、ADAM[3]、L-BFGS[4]等。<br>以上这些工作人工干预将会花去大量的时间和精力，并且最终得到的模型可能并不是该场景应用下的最优解。因此，一种新的机器学习研究新方式应运而生，即自动机器学习（Automated Machine Learning, AutoML），下称AutoML。AutoML是将机器学习应用于现实问题的END-TO-END流程自动化的过程[5][6]。一个完整的AutoML过程可以分成两类：一是将特征工程、模型选择和算法选择三个部分聚合在一起；二是神经网络架构搜索（Network Architecture Search, NAS），能自动学习到神经网络架构。下面所提到都是基于NAS的AutoML过程。<br>    AutoML提供了一系列的方法和流程，在深度学习领域，设计神经网络结构这项任务的门槛极高，一个性能优秀的神经网络需要专业知识和大量的实验试错，然而AutoML取代了人工设计复杂神经网络的繁琐步骤，针对不同应用场景，自适应地生成合适的神经网络，包括模型结构、超参数选择等等。AutoML在给定数据和场景上学习和泛化能力都非常强大，而且强调自身必须非常容易使用。因此，AutoML大大提高了机器学习的效率并加速了机器学习相关领域的研究进展，如计算机视觉，自然语言处理和图形计算。<br>    AutoML可以看作是设计一系列高级的控制系统去操作机器学习模型，因而AutoML过程中，核心在于如何去设计这个控制系统，即设计一套性能表现良好的NAS算法是AutoML过程的先决条件。</p>
+<p>##2.神经网络架构搜索（NAS）</p>
+<p>对于深度学习来说，超参数一般可以分为两类：一类是训练参数，如权重衰减，学习率，批次大小等；另一类是定义网络结构的参数，如网络结构的层数，每一层的运算方式，每一层的特征图尺寸等等。对第一类的超参数的调优一般称为超参数优化（Hyperparameter optimization, HO）,而第二类的超参数具有高纬度，离散以及相互耦合等特点，对第二类超参数的调优则称为神经网络架构搜索（NAS）。<br>神经网络架构搜索是一个高维空间的最优搜索问题，其基本流程可以概括为以下几个方面：首先，对搜索空间进行定义，这个搜索空间包括网络层数、网络层类型和网络的连接等等，如果有必要的话可以对搜索空间进行限制以缩减计算消耗，但可能会引入人为偏见，因为对搜索空间的限制可能会导致新型结构难以出现。其次，设计一种搜索策略，并利用该搜索策略找出候选的网络结构，搜索策略是神经网络架构搜索的核心问题，在保证快速找到性能优秀的网络结构的同时，应该避免过早收敛到次优结构区域[7]。最后，通过模型评估方法，对候选网络结构进行性能评估，根据评估结果进入下一轮搜索，直到得到最优的网络结构。</p>
+<p>###2.1 搜索空间</p>
+<p>神经网络架构搜索的搜索空间定义了搜索过程中需要优化的变量，变量规模不同，需要的算法难度也不同。早期工作中，有很多工作都是用诸如遗传算法的进化算法对神经网络的参数和超参数进行优化，因为早期神经网络的层数不多，参数有限，网络结构较为简单，因此可以用遗传算法直接进行优化[8][9].<br>目前大多数神经网络结构都是链式结构，这种结构相当于一个N层的序列，每一层有几种可选的算子，比如卷积、池化等，每种算子包括一些超参数，比如卷积尺寸、卷积步长等。而近年来，非链式结构的人工神经网络在各个应用表现上面都非常优秀，例如ResNet[10]、DenseNet[11],受这些非链式网络结构的启发，近年来许多研究工作开始发掘新的搜索空间，从而希望创造出具有多分支的复杂网络结构，例如cell方法[12]，cell内部是简单的卷积神经网络结构或循环神经网络结构，将许多cell重复组合，便形成一个复杂的神经网络。将cell抽象出来的好处在于减少了需要优化的变量数目，以及相同的cell可以在不同的任务场景里面进行迁移，大大提高了泛化能力。<br>NAS的问题由于具有高纬度，连续和离散混合等诸多难点，操作起来实际上是比较困难的，如果能对搜索空间进行降维，将能大幅提升性能效果和缩短搜索时间。</p>
+<p>###2.2搜索策略</p>
+<p>搜索策略定义了如何使用算法快速，准确地找到最优的网络结构参数配置，早期的搜索策略较为简单，如随机搜索（Random search, RS），网格搜索（Grid search, GS）等，这些搜索方法虽然复杂度较低，但是实际上是比较低效的，如单纯的随机搜索是较难找到一个全局最优的网络结构参数配置的。而近来常见的搜索策略则包括进化算法，强化学习和基于梯度的策略，这也是几大公司，如谷歌、旷视等的研究重点，特别是谷歌已经将强化学习的搜索策略应用在自家的AutoML平台上。</p>
+<p>####2.2.1 基于进化算法</p>
+<p>进化算法是一大类算法，大概的框架也基本类似，先随机生成一个种群（N 组解），开始循环以下几个步骤：选择、交叉、变异，直到满足最终条件。在谷歌提出的大规模进化中[13]，进化算法被引入来解决NAS问题，从简单的初始条件开始演化，最终在CIFAR-10和CIFAR-100上得到一个较好的结果。其基本流程是：首先对网络结构进行编码，然后通过锦标赛选择（tournament selection）得到父代，父代变异得到子代，子代经过训练和验证后放入候选集合中。在锦标赛选择的过程中，较差的个体逐渐被淘汰，从而最终得到较好的结果。此外谷歌这项工作的原作者继续提出了后续论文，对tournament selection进行了改进，提出变体年龄进化（aging evolution），使得进化算法在演化的过程中倾向于选择“年轻的模型”。<br>进化算法是一种无梯度的优化算法（Derivative Free Optimization Algorithm），优点是可能会得到全局最优解，缺点是效率相对较低，而且需要的计算资源花费比较多，动辄几百个GPU联合运算。实际上，进化算法在NAS过程中并没有直接参与网络的训练和验证过程，而是主导了网络结构的选择和优化过程，网络权值依旧通过基于梯度的方法（Back Propagation, BP）进行优化。因此，计算资源主要花费在神经网络的训练上面。<br>    近年来，基于概率模型的进化算法（Estimation Distribution of Algorithm, EDA)成为研究热点，基本的思路类似遗传算法，不同的是没有交叉、变异的环节，而是通过学习得到一个概率模型，由概率模型从候选集合中采样出下一步的种群。</p>
+<p>####2.2.2 基于强化学习</p>
+<p>在NAS问题上运用强化学习是近年来研究的热点，强化学习相对来说是一种比较高效的方法，只要在原问题中提取出强化学习的四要素（Policy, Reward Signal, Value Function, Model of the environment），那么NAS问题就可以用强化学习来解决。<br>    基于强化学习的NAS，开创性的工作由MIT和Google所做，前者在2016年提出了MetaQNN[14]。在MetaQNN中，网络结构搜索问题被建模成马尔可夫决策过程，同时使用强化学习方法（Q-learning）来产生卷积神经网络结构，对于卷积神经网络结构中的每一网络层，该方法可以会选择层的类型和对应的参数，将生成的网络结构训练后得到的准确度评估值作为回报（Reward），而这个回报会反过来参与Q-learning的训练。Google提出的方法中，采用了一个RNN网络作为采样控制器[15]，去采样生成可以描述网络结构的编码（字符串形式），该网络结构继而进行训练，得到准确度评估值，然而使用REINFORCE算法学习控制器的参数，使得该控制器可以采样生成效果更好的网络结构。以上两种方法在CIFAR-10等数据集上的表现都较为优秀，击败了同等级的人工神经网络模型。<br>    此外，还有许多基于强化学习的NAS，如Zoph等人提出的NASNet[12] ,在NAS任务中，强化学习的通用框架是：把架构的生成看作是一个代理（agent）做选择，通过网络结构在测试集上的准确率评估值作为回报，类似于工程优化问题中的代理模型（Surrogate Model）。这类NAS任务的整体框架如上述所示，不同之处在于策略表示和优化算法。<br>    然而，诸如NASNet之类的网络，从算法初始化到发现最佳网络结构需要耗费大量的计算资源，例如谷歌在NASNet上使用了450个GPU进行训练，找到一个最佳的网络结构花费了3到4天，这是普通科研人员难以触及到的门槛。因此，现阶段NAS领域的研究大都想方设法地让架构搜索过程更加高效。2017年，谷歌提出了渐进式神经架构搜索（PNAS）[16]，建议使用名叫“基于序列模型的优化（SMBO）”的策略，来取代NASNet里所用的强化学习。SMBO策略按照复杂性递增的顺序来测试各个模块并搜索结构，这并不会缩小搜索空间，但确实用更高效的方法达到了类似的效果。SMBO的基本框架是，相比于一次尝试多种方法，不如先将简单的部分作为切入点，有需要时再去尝试复杂的办法。这种PANS方法比原始的NAS效率高5到8倍，计算消耗也不算很昂贵。</p>
+<p>####2.2.3 基于梯度的方法</p>
+<p>基于进化算法的NAS和基于强化学习的NAS之所以花费的时间和计算资源较多是因为这两者的搜索空间本质上是离散的，目标函数是一个黑盒，不能发现一条通往最优解的路径。如果搜索空间连续，目标函数可微分，则可以基于梯度信息高效地搜索出性能优秀的神经网络结构。<br>基于梯度的NAS是一类比较新颖的研究领域，它的不同之处在于使用了一些手段（trick），使得搜索空间由离散空间变为连续空间，目标函数变为可微函数。代表性的工作是卡内基梅隆大学和谷歌公司合作的一项工作：可微结构搜索（DARTS）[17]，该工作基于Cell方法，目的同样是搜索出一个最优的Cell，该Cell原本包含N个有序结点，连接结点的边为计算操作，对每个候选操作赋予一个权重，DARTS将候选操作用SoftMax函数进行混合，这个trick将搜索空间变成了连续空间，可以用基于梯度的优化方法寻找最优结构。微软在2018年提出的另外一种基于梯度的方法NAO[18]，它将网络结构嵌入到一个连续的空间，空间上的每个点对应一个网络结构，通过定义准确率预测函数进行梯度优化并发掘更好的网络结构嵌入表征，最后将嵌入表征映射回网络结构。<br>基于梯度的NAS核心就是构造一个连续空间，在该连续空间上能够使用梯度优化方法，对包含网络结构参数和权值参数的可微函数进行优化，从而找到一个或一组最优的网络结构。</p>
+<p>###参考文献</p>
+<p>[1] Quanming Yao, Mengshuo Wang, Yuqiang Chen, Wenyuan Dai. Taking Human out of Learning Applications: A Survey on Automated Machine Learning. ArXiv:1810.13306</p>
+<p>[2] Paras. Stochastic Gradient Descent[J]. Optimization, 2014.</p>
+<p>[3] Diederik P. Kingma, Jimmy Ba. Adam: A Method for Stochastic Optimization</p>
+<p>[4] Zhu C , Byrd R H , Lu P , et al. Algorithm 778: L-BFGS-B: Fortran subroutines for large-scale bound-constrained optimization[J]. ACM Transactions on Mathematical Software, 1997, 23(4):550-560.</p>
+<p>[5] Guyon I , Bennett K , Cawley G , et al. Design of the 2015 ChaLearn AutoML challenge[C]// 2015 International Joint Conference on Neural Networks (IJCNN). IEEE, 2015.</p>
+<p>[6] He Y , Lin J , Liu Z , et al. AMC: AutoML for Model Compression and Acceleration on Mobile Devices[J]. 2018.</p>
+<p>[7] Thomas Elsken, Jan Hendrik Metzen, Frank Hutter. Neural Architecture Search: A Survey</p>
+<p>[8] Kenneth O. Stanley, Risto Miikkulainen. Evolving neural networks through augmenting topologies</p>
+<p>[9] Dario Floreano, Peter Drr, and Claudio Mattiussi. Neuro evolution: from architectures to learning. Evolutionary Intelligence, 1(1):47–62, 2008.</p>
+<p>[10] He, Kaiming, et al. “Deep Residual Learning for Image Recognition.” IEEE Conference on Computer Vision &amp; Pattern Recognition 2016.</p>
+<p>[11] Gao, Huang, et al. “Densely Connected Convolutional Networks.” IEEE Conference on Computer Vision &amp; Pattern Recognition 2017.</p>
+<p>[12] Barret Zoph, Vijay Vasudevan, Jonathon Shlens, and Quoc V. Le. Learning transferable architectures for scalable image recognition. In Conference on Computer Vision and Pattern Recognition, 2018</p>
+<p>[13] Real, Esteban, et al. “Large-Scale Evolution of Image Classifiers.” (2017).</p>
+<p>[14] Baker, Bowen, et al. “Designing Neural Network Architectures using Reinforcement Learning.” (2016).</p>
+<p>[15] Zoph, Barret, and Q. V. Le. “Neural Architecture Search with Reinforcement Learning.” (2016).</p>
+<p>[16] Liu C, Zoph B, Neumann M, et al. Progressive Neural Architecture Search[J]. 2017.</p>
+<p>[17] Hanxiao Liu, Karen Simonyan, and Yiming Yang. Darts: Diﬀerentiable architecture search. In arXiv:1806.09055, 2018c.</p>
+<p>[18] Luo R, Tian F, Qin T, et al. Neural Architecture Optimization[J]. NIPS 2018.</p>
+
       
 
       

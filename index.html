@@ -157,6 +157,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-可微网络结构搜索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/11/可微网络结构搜索/">可微网络结构搜索</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/11/可微网络结构搜索/" class="archive-article-date">
+  	<time datetime="2019-07-11T13:02:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文:<a href="https://arxiv.org/pdf/1806.09055.pdf" target="_blank" rel="noopener">《DARTS: Differentiable Architecture Search》</a>  </p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;文章首次提出了一种可微的网络搜索方法，也就是使用梯度下降的方法进行网络结构搜索。大多数网络搜索算法是使用强化学习或进化算法进行结构搜索，这类算法的搜索空间是离散的，搜索太耗时了。所以本文的作者提出一种新的网络搜索算法DARTS。DARTS的搜索空间是连续的，搜索过程通过在验证集上使用梯度下降算法完成。DARTS进行网络搜索的计算开销比普通网络搜索算法小几个量级，但搜索得到的网络结构却仍能和之前SOTA算法持平。同时它的泛化能力也很好，不仅可以用于CNN结构的搜索，还可以用于RNN结构的搜索。</p>
+<div align="center"><br><img width="600" src="./可微网络结构搜索/a.png"><br></div>
+
+<center><font size="2">图1 DARTS搜索示意图</font></center>
+
+<p>&emsp;算法搜索的最小单位是一个称为cell的结构。上图（a）就是一个cell的初始状态。cell是一个有向无环图。一开始，cell中每个结点都与它之前的结点有连线。cell中的每个结点代表一个隐层特征（例如CNN中的特征图），连线代表一些操作（一条线上有多个操作，conv，pooling，zero等）。默认cell有两个输入和一个输出。对于CNN结构，cell可以来自之前两个cell的输出，而对于RNN，输入则可以是当前cell的输入和上个cell的输出状态。cell的每个节点的值的计算公式：</p>
+<div align="center"><br><img src="./可微网络结构搜索/b.png"><br></div>
+
+<p>节点的值由前面的节点的值计算获得。  </p>
+<h2 id="搜索空间连续"><a href="#搜索空间连续" class="headerlink" title="搜索空间连续"></a>搜索空间连续</h2><p>&emsp;搜索算法搜索的结果是某种特定结构的cell，比如cell中哪些结点之间有连线，连线上的操作是什么。但是到目前为止的搜索空间还是离散的。所以为了使搜索空间连续，作者为连线上的每一种操作赋上一个权重，所以对于连线上操作对于结点的操作可以表示为：</p>
+<div align="center"><br><img width="350" src="./可微网络结构搜索/c.png"><br></div>
+
+<p>&emsp;O代表连线上操作的集合，α^(i,j)代表i，j连线上操作o的权值，所以公式的含义就是使用连线上每个操作对结点进行操作，然后按照一定的权值将结果组合起来作为连线的输出。由于引入了参数权值α，搜索空间连续，可使用BP算法更新。学习α之后，通过取每条连线上权值最大的操作作为连线的操作将结构离散化。数学表达式为：</p>
+<div align="center"><br><img width="200" src="./可微网络结构搜索/d.png"><br></div>
+
+<h2 id="近似优化"><a href="#近似优化" class="headerlink" title="近似优化"></a>近似优化</h2><p>&emsp;在优化过程中，除了需要优化更新结构参数α 之外，还需要优化更新模型参数w。如果同时进行优化的话，代价太高。因为只要α改变了，就需要重新计算w。所以作者采用了迭代近似优化的方法，即分开优化α和w。优化算法如下图所示：</p>
+<div align="center"><br><img width="700" src="./可微网络结构搜索/e.png"><br></div>
+
+<h2 id="离散结构获取"><a href="#离散结构获取" class="headerlink" title="离散结构获取"></a>离散结构获取</h2><p>&emsp;对于cell中的每个中间结点，从它的所有前结点中选择k个连线权重最大的结点作为它的前结点。其中连线权重是连线上不同操作权重中最大的那个权重。通常对于CNN结构，k取2，对于RNN结构，k取1。得到每个中间结点的前结点之后，选区操作权重最大的操作作为两个结点间的操作。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>&emsp;在CIFAR-10上的实验，作者定义的操作集合包括，3x3，5x5的separable convolutions，3x3，5x5的dilated convolutions，3x3 max pooling，3x3 average pooling, identity, zero 这8种操作（zero是指两个计算节点之间不连接）。这些操作的stride都是1，卷积操作使用padding来保持特征图的大小。对于卷积操作，使用ReLU-Conv-BN操作顺序。<br>每个cell包括7个结点，cell的output通过对中间结点进行通道上的拼接得到。然后总的网络结构再由多个cell堆叠而成。在网络深度1/3和2/3的位置的cell属于reduction cell，在这种cell中，与输入结点相连的边上操作的stride为2。<br>&emsp;Normal cell 的特征图尺寸不变，reduction cell 的特征图尺寸减少为原来的一半。<br>进行网络搜索时，将CIFAR-10训练集的一半划分为验证集。设计一个小网络包含8个cell，然后训练DARTS 50 个epochs。<br>为了选择合适的网络，针对同个数据集，作者训练4次DARTS模型，然后选择在验证集表现最好的作为网络结构搜索结果。然后再随机初始化模型的参数，使用训练集从头训练模型，最后在测试集上验证网络结构的效果。<br>开始训练模型时，作者设计一个大网络包含20个cell，训练600个epochs。得到的模型性能如下图所示：</p>
+<div align="center"><br><img width="600" src="./可微网络结构搜索/f.png"><br></div>
+
+<center><font size="2">图2 DARTS与其他NAS方法性能比较<br></font><br></center>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;Darts是一种比较新颖的方法，与EA和RL不同，它减少了许多计算资源的消耗，将搜索空间用softmax连续化的操作，可以为后续研究工作沿用。当然本方法依然存在一些不足，首先是混合操作，如果混合操作的各个权重差异性不明显，直接用权重最大的操作替代混合操作是否合理？其次，如果一开始混合操作之间的权重不在一个数量级上，这对Cell的多样性是不是一种阻碍？这些问题都可以进行深入探讨。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">梯度</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/11/可微网络结构搜索/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-NAS综述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -401,6 +508,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">梯度</a>
               </li>
             
             <div class="clearfix"></div>

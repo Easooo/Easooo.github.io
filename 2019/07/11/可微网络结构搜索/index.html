@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/07/11/可微网络结构搜索/可微网络结构搜索/d.png">
 <meta property="og:image" content="http://yoursite.com/2019/07/11/可微网络结构搜索/可微网络结构搜索/e.png">
 <meta property="og:image" content="http://yoursite.com/2019/07/11/可微网络结构搜索/可微网络结构搜索/f.png">
-<meta property="og:updated_time" content="2019-07-11T13:39:02.869Z">
+<meta property="og:updated_time" content="2019-07-11T13:50:35.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可微网络结构搜索">
 <meta name="twitter:description" content="原文:《DARTS: Differentiable Architecture Search》   简介&amp;emsp;文章首次提出了一种可微的网络搜索方法，也就是使用梯度下降的方法进行网络结构搜索。大多数网络搜索算法是使用强化学习或进化算法进行结构搜索，这类算法的搜索空间是离散的，搜索太耗时了。所以本文的作者提出一种新的网络搜索算法DARTS。DARTS的搜索空间是连续的，搜索过程通过在验证集上使用梯">
@@ -187,7 +187,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>原文:<a href="https://arxiv.org/pdf/1806.09055.pdf" target="_blank" rel="noopener">《DARTS: Differentiable Architecture Search》</a>  </p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;文章首次提出了一种可微的网络搜索方法，也就是使用梯度下降的方法进行网络结构搜索。大多数网络搜索算法是使用强化学习或进化算法进行结构搜索，这类算法的搜索空间是离散的，搜索太耗时了。所以本文的作者提出一种新的网络搜索算法DARTS。DARTS的搜索空间是连续的，搜索过程通过在验证集上使用梯度下降算法完成。DARTS进行网络搜索的计算开销比普通网络搜索算法小几个量级，但搜索得到的网络结构却仍能和之前SOTA算法持平。同时它的泛化能力也很好，不仅可以用于CNN结构的搜索，还可以用于RNN结构的搜索。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;文章首次提出了一种可微的网络搜索方法，也就是使用梯度下降的方法进行网络结构搜索。大多数网络搜索算法是使用强化学习或进化算法进行结构搜索，这类算法的搜索空间是离散的，搜索太耗时了。所以本文的作者提出一种新的网络搜索算法DARTS。DARTS的搜索空间是连续的，搜索过程通过在验证集上使用梯度下降算法完成。DARTS进行网络搜索的计算开销比普通网络搜索算法小几个量级，但搜索得到的网络结构却仍能和之前SOTA算法持平。同时它的泛化能力也很好，不仅可以用于CNN结构的搜索，还可以用于RNN结构的搜索。<br><a id="more"></a>  </p>
 <div align="center"><br><img width="600" src="./可微网络结构搜索/a.png"><br></div>
 
 <center><font size="2">图1 DARTS搜索示意图</font></center>

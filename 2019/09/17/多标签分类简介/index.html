@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多标签分类简介 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
+  <meta name="description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。">
 <meta name="keywords" content="ML,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多标签分类简介">
 <meta property="og:url" content="http://yoursite.com/2019/09/17/多标签分类简介/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
-<meta property="og:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
+<meta property="og:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/a.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/b.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/c.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/d.png">
-<meta property="og:updated_time" content="2019-09-19T13:58:39.696Z">
+<meta property="og:updated_time" content="2019-09-19T14:02:04.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多标签分类简介">
-<meta name="twitter:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
+<meta name="twitter:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/17/多标签分类简介/a.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
@@ -184,7 +184,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>&emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。</p>
+        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>&emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。<br><a id="more"></a>  </p>
 <h2 id="二分类、多分类与多标签"><a href="#二分类、多分类与多标签" class="headerlink" title="二分类、多分类与多标签"></a>二分类、多分类与多标签</h2><ul>
 <li>二分类<br>&emsp;二分类顾名思义就是分类任务中有两个类别，如判断一个平面几何图形(特征向量为x)是不是圆形，假如是一个圆形，那么分类器的输出y=1，否则y=0，如下图1所示的一个二分类问题。</li>
 </ul>
@@ -438,11 +438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">梯度</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">梯度</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
             
             <div class="clearfix"></div>

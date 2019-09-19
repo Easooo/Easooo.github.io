@@ -157,6 +157,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多标签分类简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/17/多标签分类简介/">多标签分类简介</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/17/多标签分类简介/" class="archive-article-date">
+  	<time datetime="2019-09-17T15:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>&emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。</p>
+<h2 id="二分类、多分类与多标签"><a href="#二分类、多分类与多标签" class="headerlink" title="二分类、多分类与多标签"></a>二分类、多分类与多标签</h2><ul>
+<li>二分类<br>&emsp;二分类顾名思义就是分类任务中有两个类别，如判断一个平面几何图形(特征向量为x)是不是圆形，假如是一个圆形，那么分类器的输出y=1，否则y=0，如下图1所示的一个二分类问题。</li>
+</ul>
+<div align="center"><br><img width="250" src="./a.png"><br></div>
+
+<center><font size="2">图1 二分类问题</font></center>  
+
+
+<ul>
+<li>多分类<br>&emsp;作为二分类的问题扩展，多分类问题目前也是计算机视觉的研究热点，多分类表示一个分类任务中包含多种类别，而这些类别往往是互斥的，例如判断一个图形是三角形、圆形或者矩形，而这个图形有且只能有一个标签。通常情况下，样本的标签用一组向量表示，例如one-hot编码y = [1,0,0]表示该图形是三角形。注意，该向量中只能有1位“1”，其余为“0”，且“1”所在的位置表示特定的一类。或者直接设定y = 1，2，3分别代表三角形、圆形或者矩形。</li>
+</ul>
+<div align="center"><br><img width="450" src="./b.png"><br></div><br><center><font size="2">图2 多分类问题</font></center><br><br>+ 多标签<br>&emsp;多标签则是分类问题中的一个高阶难题，给定一个图形，该图形可能同时满足多种属性，而属性之间相互独立不互斥，这些属性便是多标签，而一个属性下面便是多分类问题。举一个简单的例子，如下图3所示。按照图形基本类型的划分，可以归类为矩形，而按照颜色划分，可以归类为蓝色。图形和颜色两种标签是相互独立的。该图形同时有两种属性标签，这便是多标签分类。<br><br><div align="center"><br><img width="150" src="./c.png"><br></div>
+
+<center><font size="2">图3 多标签举例</font></center>  
+
+<h2 id="多标签分类的损失函数"><a href="#多标签分类的损失函数" class="headerlink" title="多标签分类的损失函数"></a>多标签分类的损失函数</h2><p>&emsp;在预测多标签分类问题时，假设隐藏层的输出是[-1.0, 5.0, -0.5, 5.0, -0.5 ]，如果用softmax函数的话，那么输出为：[ 0.00123281  0.49735104  0.00203256  0.49735104  0.00203256]，很明显应该选择标签2和4，然而这是错的，因为样本的每个标签之间应该是相互独立的。因此选择sigmoid函数，输出为[ 0.26894142  0.99330715  0.37754067  0.99330715  0.37754067]，再按照设定的阈值进行样本的标签挑选。  </p>
+<p>&emsp;在多标签分类中，大多使用binary_crossentropy损失而不是通常在多类分类中使用的categorical_crossentropy损失函数。这可能看起来不合理，但因为每个输出节点都是独立的，选择二元损失，并将网络输出建模为每个标签独立的bernoulli分布。bceloss的计算公式如下所示：</p>
+<div align="center"><br><img width="500" src="./d.png"><br></div>
+
+<center><font size="2">式1 BECLOSS</font></center>  
+
+<p>&emsp;其中，o为输出(output)，t为目标(target)，i为每一个类。bceloss在每个类维度上求cross entropy loss然后加和求平均得到，这里就体现了多标签的思想。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/17/多标签分类简介/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Batch Normalization简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -578,6 +678,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,23 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Batch Normalization简介 | 冰冻西瓜汁没有籽</title>
+  <title>多标签分类简介 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在开头&amp;emsp;Batch Normalization 是神经网络训练过程中的一种方法，即神经网络中的BN层的概念。它在2015年的时候被提出，原文为《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》通常情况下，当神经网络达到一定深度时，大多会使用这种算法。">
-<meta name="keywords" content="ML,NN,torch">
+  <meta name="description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
+<meta name="keywords" content="ML,深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Batch Normalization简介">
-<meta property="og:url" content="http://yoursite.com/2019/08/31/Batch Normalization简介/index.html">
+<meta property="og:title" content="多标签分类简介">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/多标签分类简介/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
-<meta property="og:description" content="写在开头&amp;emsp;Batch Normalization 是神经网络训练过程中的一种方法，即神经网络中的BN层的概念。它在2015年的时候被提出，原文为《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》通常情况下，当神经网络达到一定深度时，大多会使用这种算法。">
+<meta property="og:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2019/08/31/Batch%20Normalization简介/a.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/31/Batch%20Normalization简介/b.png">
-<meta property="og:updated_time" content="2019-08-31T14:51:43.938Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/a.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/b.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/c.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/17/多标签分类简介/d.png">
+<meta property="og:updated_time" content="2019-09-19T13:58:39.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Batch Normalization简介">
-<meta name="twitter:description" content="写在开头&amp;emsp;Batch Normalization 是神经网络训练过程中的一种方法，即神经网络中的BN层的概念。它在2015年的时候被提出，原文为《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》通常情况下，当神经网络达到一定深度时，大多会使用这种算法。">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/31/Batch%20Normalization简介/a.png">
+<meta name="twitter:title" content="多标签分类简介">
+<meta name="twitter:description" content="写在开头&amp;emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。 二分类、多分类与">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/17/多标签分类简介/a.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
   
@@ -162,62 +164,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Batch Normalization简介" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-多标签分类简介" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Batch Normalization简介
+      多标签分类简介
     </h1>
   
 
         
-        <a href="/2019/08/31/Batch Normalization简介/" class="archive-article-date">
-  	<time datetime="2019-08-31T13:00:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
+        <a href="/2019/09/17/多标签分类简介/" class="archive-article-date">
+  	<time datetime="2019-09-17T15:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>&emsp;Batch Normalization 是神经网络训练过程中的一种方法，即神经网络中的BN层的概念。它在2015年的时候被提出，原文为<a href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》</a>通常情况下，当神经网络达到一定深度时，大多会使用这种算法。从字面意思上看，BN表示批量规范化，即对于一个批量的信号，将信号进行规范化以保证神经网络的稳定性。<br><a id="more"></a>  </p>
-<h2 id="BN的原理"><a href="#BN的原理" class="headerlink" title="BN的原理"></a>BN的原理</h2><p>&emsp;首先先来看一下BN操作的实现过程：  </p>
-<div align="center"><br><img width="500" src="./a.png"><br></div>
-
-<center><font size="2">图1 BN层的算法步骤</font></center>    
-
-<p>&emsp;从以上步骤可以看到，BN操作基本上是在做这么几件事：  </p>
-<ol>
-<li>计算输出样本批次的均值</li>
-<li>计算输出样本批次的方差</li>
-<li>对输出样本批次的数据进行规范化操作</li>
-<li>对输出样本批次的数据进行缩放和平移两个操作  </li>
-</ol>
-<p>&emsp;在神经网络训练过程中，对数据进行归一化是一个一般化的处理方式，训练数据和测试数据本身是具有数据分布的，神经网络在训练过程中是在学习该分布，对数据进行归一化后，可以减轻训练数据和测试数据分布不一样带来的影响，从而提高神经网络的泛化能力，并且可以提高网络的训练速度。  </p>
-<p>&emsp;对于BN层来说，它解决的也是这个数据分布带来的影响的问题。假定有神经网络中有A层和B层连续两层，A层的输出作为B层的输入，那么对于B层来说，它要学习来自A的数据分布，那么就要考虑来自A的输出分布带来的影响。如果直接强制归一化，那么可能会丢失一些信息。所以BN层做出了改进，它引入了γ和β两个可学习参数，如上图所示。  </p>
-<p>&emsp;在测试阶段，γ和β不更新，BN层使用以下的公式：  </p>
-<div align="center"><br><img width="300" src="./b.png"><br></div>    
-
-<h2 id="BN的优点"><a href="#BN的优点" class="headerlink" title="BN的优点"></a>BN的优点</h2><ul>
-<li>BN层可以防止梯度弥散和梯度爆炸  </li>
+        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>&emsp;图像分类是深度学习的一个重要任务，也是计算机视觉的一个热门研究领域。目前来看，数据集和网络模型互相驱动的良性模式使得研究人员在图像分类的问题上已经能做到比较好的效果。图像分类旨在对一幅图像进行判断，对于分类任务的不同可以划分为二分类、多分类和多标签分类，目前的研究大多数都是基于多分类的，也就是单标签分类。本篇文章将介绍一下相对困难的分类任务 —— 多标签分类。</p>
+<h2 id="二分类、多分类与多标签"><a href="#二分类、多分类与多标签" class="headerlink" title="二分类、多分类与多标签"></a>二分类、多分类与多标签</h2><ul>
+<li>二分类<br>&emsp;二分类顾名思义就是分类任务中有两个类别，如判断一个平面几何图形(特征向量为x)是不是圆形，假如是一个圆形，那么分类器的输出y=1，否则y=0，如下图1所示的一个二分类问题。</li>
 </ul>
-<p>&emsp;反向传播中，经过每一层的梯度会乘以该层的权重w，w的大小影响了梯度的消失和爆炸，BN就是通过对每一层的输出规范为均值和方差一致的方法，消除了w带来的放大缩小的影响，从而解决梯度弥散和爆炸的问题。  </p>
+<div align="center"><br><img width="250" src="./a.png"><br></div>
+
+<center><font size="2">图1 二分类问题</font></center>  
+
+
 <ul>
-<li>BN层可以加快网络训练速度  </li>
+<li>多分类<br>&emsp;作为二分类的问题扩展，多分类问题目前也是计算机视觉的研究热点，多分类表示一个分类任务中包含多种类别，而这些类别往往是互斥的，例如判断一个图形是三角形、圆形或者矩形，而这个图形有且只能有一个标签。通常情况下，样本的标签用一组向量表示，例如one-hot编码y = [1,0,0]表示该图形是三角形。注意，该向量中只能有1位“1”，其余为“0”，且“1”所在的位置表示特定的一类。或者直接设定y = 1，2，3分别代表三角形、圆形或者矩形。</li>
 </ul>
-<p>&emsp;假设没有BN层，A的输出x直接输入到B层中，那么x分布的变换将导致B层进行训练学习以适应x的均值和方差。实际上，BN层加速训练的原理和白化训练数据加速训练类似。  </p>
-<ul>
-<li>BN层可以防止过拟合  </li>
-</ul>
-<p>&emsp;在训练中，BN的使用使得一个mini-batch中的所有样本都被关联在了一起，因此网络不会从某一个训练样本中生成确定的结果。同样一个样本的输出不再仅仅取决于样本本身，也取决于跟这个样本属于同一个mini-batch的其它样本。  </p>
-<h2 id="PyTorch中的BN实现"><a href="#PyTorch中的BN实现" class="headerlink" title="PyTorch中的BN实现"></a>PyTorch中的BN实现</h2><ul>
-<li>nn. BatchNorm2d()</li>
-</ul>
-<p>代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True,track_running_stats=True)</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;affine为True时，γ和β可以学习；不可学习时，γ和β默认值为1和0，在训练过程中model.train()，train过程的BN的统计数值——均值和方差是通过当前batch数据估计的。并且测试时，model.eval()后，模型此刻所使用的统计数据是Running status 中的，即通过指数衰减规则，积累到当前的数值。  </p>
-<p>&emsp;BN层的统计数据更新是在每一次训练阶段model.train()后的forward()方法中自动实现的，而不是在梯度计算与反向传播中更新optim.step()中完成正确的冻结BN的方式是在模型训练时，把BN单独挑出来，重新设置其状态为eval (在model.train()之后覆盖training状态）。</p>
+<div align="center"><br><img width="450" src="./b.png"><br></div><br><center><font size="2">图2 多分类问题</font></center><br><br>+ 多标签<br>&emsp;多标签则是分类问题中的一个高阶难题，给定一个图形，该图形可能同时满足多种属性，而属性之间相互独立不互斥，这些属性便是多标签，而一个属性下面便是多分类问题。举一个简单的例子，如下图3所示。按照图形基本类型的划分，可以归类为矩形，而按照颜色划分，可以归类为蓝色。图形和颜色两种标签是相互独立的。该图形同时有两种属性标签，这便是多标签分类。<br><br><div align="center"><br><img width="150" src="./c.png"><br></div>
+
+<center><font size="2">图3 多标签举例</font></center>  
+
+<h2 id="多标签分类的损失函数"><a href="#多标签分类的损失函数" class="headerlink" title="多标签分类的损失函数"></a>多标签分类的损失函数</h2><p>&emsp;在预测多标签分类问题时，假设隐藏层的输出是[-1.0, 5.0, -0.5, 5.0, -0.5 ]，如果用softmax函数的话，那么输出为：[ 0.00123281  0.49735104  0.00203256  0.49735104  0.00203256]，很明显应该选择标签2和4，然而这是错的，因为样本的每个标签之间应该是相互独立的。因此选择sigmoid函数，输出为[ 0.26894142  0.99330715  0.37754067  0.99330715  0.37754067]，再按照设定的阈值进行样本的标签挑选。  </p>
+<p>&emsp;在多标签分类中，大多使用binary_crossentropy损失而不是通常在多类分类中使用的categorical_crossentropy损失函数。这可能看起来不合理，但因为每个输出节点都是独立的，选择二元损失，并将网络输出建模为每个标签独立的bernoulli分布。bceloss的计算公式如下所示：</p>
+<div align="center"><br><img width="500" src="./d.png"><br></div>
+
+<center><font size="2">式1 BECLOSS</font></center>  
+
+<p>&emsp;其中，o为输出(output)，t为目标(target)，i为每一个类。bceloss在每个类维度上求cross entropy loss然后加和求平均得到，这里就体现了多标签的思想。</p>
 
       
 
@@ -235,11 +224,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NN</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">torch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		
 		</ul>
@@ -295,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2019/08/31/Batch Normalization简介/" alt="微信分享二维码">
+      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2019/09/17/多标签分类简介/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/17/多标签分类简介/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          多标签分类简介
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/11/可微网络结构搜索/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">可微网络结构搜索</div>
+    <a href="/2019/08/31/Batch Normalization简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Batch Normalization简介</div>
       <i class="icon-circle-right"></i>
     </a>
   

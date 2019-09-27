@@ -177,34 +177,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="回顾Pytorch中的conv函数"><a href="#回顾Pytorch中的conv函数" class="headerlink" title="回顾Pytorch中的conv函数"></a>回顾Pytorch中的conv函数</h2><p>&emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：</p>
-<div align="center"><br><img width="550" src="./a.png"><br></div>
-
-<center><font size="2">图1 torch.nn.Conv2d函数各参数</font></center> 
-
-<p>&emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有的 in_channels 都参与了计算。对于 groups 参数的解读，其实可以从例子入手。假定输入数据的 size 分别为 H_in 和 W_in，输出 size 为 H_out 和 W_out：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; conv=nn.Conv2d(in_channels=6,out_channels=18,kernel_size=3,stride=1,padding=0,groups=1)</span><br><span class="line">&gt;&gt;&gt; conv.weight.data.size()</span><br><span class="line">torch.Size([18, 6, 3, 3])</span><br></pre></td></tr></table></figure>
-<p>&emsp;对于上述例子，输入通道为6，输出通道为18，反映到 conv 的权重 shape 里面，第一维是输出通道，第二维是输入通道，第三和第四维分别是卷积核的尺寸。groups=1，那么所有的输入通道都参与了输出通道的计算，所以一共有(6 <em> 3 </em> 3) <em> 18个参数，输出结果为18 </em> H_out * W_out。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; conv=nn.Conv2d(in_channels=6,out_channels=18,kernel_size=3,stride=1,padding=0,groups=3)</span><br><span class="line">&gt;&gt;&gt; conv.weight.data.size()</span><br><span class="line">torch.Size([18, 2, 3, 3)</span><br></pre></td></tr></table></figure>
-<p>&emsp;而当 groups=3 时，conv.weight.data.size() = torch.Size([18, 2, 1, 1])，in_channels 被分成了3组，每次计算的 channels 数为 in_channels/groups=2，也就是分成了3组输出，而最终要求的out_channels 为16，因此每一组都要重复使用 out_channels/3=6次，然后3组 6<em> H_out</em>W_out 的输出 concat 为最终16个 channel 的输出。因此，groups 必须能整除 in_channels 和 out_channels。  </p>
-<p>&emsp;以上便是groups参数的效果。在实际实验中，同样的网络结构下，这种分组的卷积效果是好于未分组的卷积的效果的。深度可分离卷积（depth wise separable convolution）也是利用了这个思想，</p>
-<p>&emsp;深度可分离卷积实际上是相当于把常规的卷积操作步骤分成两步，假设原来是3 * 3的卷积核尺寸，那么：  </p>
-<ul>
-<li>先用 M 个3 * 3卷积核一对一卷积输入的 M 个 feature map，不求和，生成 M 个结果；</li>
-<li>然后用 N 个1*1的卷积核正常卷积前面生成的 M 个结果，求和，最后生成 N 个结果；  </li>
-</ul>
-<p>&emsp;具体的操作图解如下图所示：</p>
-<div align="center"><br><img width="500" height="330" src="./c.png"><br></div>
-
-<center><font size="2">图2 深度可分离卷积过程</font></center> 
-
-<p>&emsp;可以看出运用深度可分离卷积比普通卷积减少了所需要的参数，重要的是深度可分离卷积将以往普通卷积操作同时考虑通道和区域改变成，卷积先只考虑区域，然后再考虑通道，实现了通道和区域的分离。参照上述的思想，groups参数可以利用在深度分离卷积中，下面是pytorch中深度可分离卷积的实现方式：</p>
-<div align="center"><br><img width="550" height="210" src="./b.png"><br></div>
-
-<center><font size="2">图3 torch中深度可分离卷积的实现方式</font></center> 
-
-
-
+        <h2 id="回顾Pytorch中的conv函数"><a href="#回顾Pytorch中的conv函数" class="headerlink" title="回顾Pytorch中的conv函数"></a>回顾Pytorch中的conv函数</h2><p>&emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：<br>
+        
+          <a class="article-more-a" href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/#more">more >></a>
+        
       
 
       
@@ -765,10 +741,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NAS</a>
               </li>
              
@@ -778,6 +750,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">梯度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DL</a>
               </li>
             
             <div class="clearfix"></div>

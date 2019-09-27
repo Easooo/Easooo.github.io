@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Pyotoch中conv函数的group参数及深度可分离卷积 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
+  <meta name="description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：">
 <meta name="keywords" content="ML,torch,DL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pyotoch中conv函数的group参数及深度可分离卷积">
 <meta property="og:url" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
-<meta property="og:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
+<meta property="og:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/a.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/c.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/b.png">
-<meta property="og:updated_time" content="2019-09-27T15:11:30.167Z">
+<meta property="og:updated_time" content="2019-09-27T15:14:33.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pyotoch中conv函数的group参数及深度可分离卷积">
-<meta name="twitter:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
+<meta name="twitter:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/a.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="回顾Pytorch中的conv函数"><a href="#回顾Pytorch中的conv函数" class="headerlink" title="回顾Pytorch中的conv函数"></a>回顾Pytorch中的conv函数</h2><p>&emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：</p>
+        <h2 id="回顾Pytorch中的conv函数"><a href="#回顾Pytorch中的conv函数" class="headerlink" title="回顾Pytorch中的conv函数"></a>回顾Pytorch中的conv函数</h2><p>&emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：<br><a id="more"></a>  </p>
 <div align="center"><br><img width="550" src="./a.png"><br></div>
 
 <center><font size="2">图1 torch.nn.Conv2d函数各参数</font></center> 
@@ -441,10 +441,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NAS</a>
               </li>
              
@@ -454,6 +450,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">梯度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DL</a>
               </li>
             
             <div class="clearfix"></div>

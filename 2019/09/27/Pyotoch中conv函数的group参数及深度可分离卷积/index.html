@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/9 | 冰冻西瓜汁没有籽</title>
+  <title>Pyotoch中conv函数的group参数及深度可分离卷积 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="ML,NAS,DATA">
-<meta property="og:type" content="website">
-<meta property="og:title" content="冰冻西瓜汁没有籽">
-<meta property="og:url" content="http://yoursite.com/archives/2019/09/index.html">
+  <meta name="description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
+<meta name="keywords" content="ML,torch,DL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pyotoch中conv函数的group参数及深度可分离卷积">
+<meta property="og:url" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
+<meta property="og:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/a.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/c.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/b.png">
+<meta property="og:updated_time" content="2019-09-27T15:11:30.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰冻西瓜汁没有籽">
+<meta name="twitter:title" content="Pyotoch中conv函数的group参数及深度可分离卷积">
+<meta name="twitter:description" content="回顾Pytorch中的conv函数&amp;emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：   图1 torch.nn.Conv2d函数各参数   &amp;emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/a.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
   
@@ -155,36 +163,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Pyotoch中conv函数的group参数及深度可分离卷积" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/" class="archive-article-date">
-  	<time datetime="2019-09-27T14:28:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/">Pyotoch中conv函数的group参数及深度可分离卷积</a>
+    <h1 class="article-title" itemprop="name">
+      Pyotoch中conv函数的group参数及深度可分离卷积
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/" class="archive-article-date">
+  	<time datetime="2019-09-27T14:28:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="回顾Pytorch中的conv函数"><a href="#回顾Pytorch中的conv函数" class="headerlink" title="回顾Pytorch中的conv函数"></a>回顾Pytorch中的conv函数</h2><p>&emsp;groups参数是conv函数中一个比较有意思的参数，以conv2d函数为例子，下面是Conv2d中各个参数的官方解读文档：</p>
+<div align="center"><br><img width="550" src="./a.png"><br></div>
+
+<center><font size="2">图1 torch.nn.Conv2d函数各参数</font></center> 
+
+<p>&emsp;in_channels 和 out_channels 分别为输入通道和输出通道，在默认情况下，groups=1，也就是说对于每个 out_channels，所有的 in_channels 都参与了计算。对于 groups 参数的解读，其实可以从例子入手。假定输入数据的 size 分别为 H_in 和 W_in，输出 size 为 H_out 和 W_out：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; conv=nn.Conv2d(in_channels=6,out_channels=18,kernel_size=3,stride=1,padding=0,groups=1)</span><br><span class="line">&gt;&gt;&gt; conv.weight.data.size()</span><br><span class="line">torch.Size([18, 6, 3, 3])</span><br></pre></td></tr></table></figure>
+<p>&emsp;对于上述例子，输入通道为6，输出通道为18，反映到 conv 的权重 shape 里面，第一维是输出通道，第二维是输入通道，第三和第四维分别是卷积核的尺寸。groups=1，那么所有的输入通道都参与了输出通道的计算，所以一共有(6 <em> 3 </em> 3) <em> 18个参数，输出结果为18 </em> H_out * W_out。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; conv=nn.Conv2d(in_channels=6,out_channels=18,kernel_size=3,stride=1,padding=0,groups=3)</span><br><span class="line">&gt;&gt;&gt; conv.weight.data.size()</span><br><span class="line">torch.Size([18, 2, 3, 3)</span><br></pre></td></tr></table></figure>
+<p>&emsp;而当 groups=3 时，conv.weight.data.size() = torch.Size([18, 2, 1, 1])，in_channels 被分成了3组，每次计算的 channels 数为 in_channels/groups=2，也就是分成了3组输出，而最终要求的out_channels 为16，因此每一组都要重复使用 out_channels/3=6次，然后3组 6<em> H_out</em>W_out 的输出 concat 为最终16个 channel 的输出。因此，groups 必须能整除 in_channels 和 out_channels。  </p>
+<p>&emsp;以上便是groups参数的效果。在实际实验中，同样的网络结构下，这种分组的卷积效果是好于未分组的卷积的效果的。深度可分离卷积（depth wise separable convolution）也是利用了这个思想，</p>
+<p>&emsp;深度可分离卷积实际上是相当于把常规的卷积操作步骤分成两步，假设原来是3 * 3的卷积核尺寸，那么：  </p>
+<ul>
+<li>先用 M 个3 * 3卷积核一对一卷积输入的 M 个 feature map，不求和，生成 M 个结果；</li>
+<li>然后用 N 个1*1的卷积核正常卷积前面生成的 M 个结果，求和，最后生成 N 个结果；  </li>
+</ul>
+<p>&emsp;具体的操作图解如下图所示：</p>
+<div align="center"><br><img width="500" height="330" src="./c.png"><br></div>
+
+<center><font size="2">图2 深度可分离卷积过程</font></center> 
+
+<p>&emsp;可以看出运用深度可分离卷积比普通卷积减少了所需要的参数，重要的是深度可分离卷积将以往普通卷积操作同时考虑通道和区域改变成，卷积先只考虑区域，然后再考虑通道，实现了通道和区域的分离。参照上述的思想，groups参数可以利用在深度分离卷积中，下面是pytorch中深度可分离卷积的实现方式：</p>
+<div align="center"><br><img width="550" height="210" src="./b.png"><br></div>
+
+<center><font size="2">图3 torch中深度可分离卷积的实现方式</font></center> 
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -204,61 +237,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/17/多标签分类简介/" class="archive-article-date">
-  	<time datetime="2019-09-17T15:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/17/多标签分类简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多标签分类简介</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/17/多标签分类简介/">多标签分类简介</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -281,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

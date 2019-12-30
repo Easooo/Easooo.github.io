@@ -177,80 +177,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="聚类分析的作用"><a href="#聚类分析的作用" class="headerlink" title="聚类分析的作用"></a>聚类分析的作用</h2><p>&emsp;聚类分析是在没有给定划分类别的情况下，根据数据相似度进行样本分组的一种方法。与分类模型需要使用有标签训练数据不同，聚类模型可以建立在无类标记的数据上，是一种无监督的学习方法。聚类的输入是一组未被标记的样本，聚类根据自身的距离或者相似度将其划分为若干组，划分的原则是组内的距离最小化而组间（外部）距离最大化。  </p>
-<h2 id="常用的聚类方法"><a href="#常用的聚类方法" class="headerlink" title="常用的聚类方法"></a>常用的聚类方法</h2><ul>
-<li>划分（分裂）方法</li>
-</ul>
-<ol>
-<li>K-Means算法（K-平均）</li>
-<li>K-MEDOIDS算法（K-中心点）</li>
-<li>CLARANS算法（基于选择的算法）</li>
-</ol>
-<ul>
-<li>层次分析方法</li>
-</ul>
-<ol>
-<li>BIRCH算法（平衡迭代规约和聚类）</li>
-<li>CURE算法（代表点聚类）</li>
-<li>CHAMELEON算法（动态模型）</li>
-</ol>
-<ul>
-<li>基于密度的方法</li>
-</ul>
-<ol>
-<li>DBSCAN算法（基于高密度连接区域）</li>
-<li>DENCLUE算法（密度分布函数）</li>
-<li>OPTICS算法（对象排序识别）</li>
-</ol>
-<ul>
-<li>基于网格的方法</li>
-</ul>
-<ol>
-<li>STING算法（统计信息网络）</li>
-<li>CLIOUE算法（聚类高维空间）</li>
-<li>WAVE-CLUSTER算法(小波变换)</li>
-</ol>
-<ul>
-<li>基于模型的方法</li>
-</ul>
-<ol>
-<li>统计学方法</li>
-<li>神经网络方法</li>
-</ol>
-<h2 id="K-Means聚类算法"><a href="#K-Means聚类算法" class="headerlink" title="K-Means聚类算法"></a>K-Means聚类算法</h2><p>&emsp;K-Means算法是典型的基于距离的非层次聚类算法，在最小化误差函数的基础上将数据划分为预定的类数K，采用距离作为相似性的评价指标，即认为两个对象的距离越近，其相似度就越大。  </p>
-<ol>
-<li>算法过程</li>
-</ol>
-<ul>
-<li>从N个样本数据中随机选取K个对象作为初始的聚类中心。</li>
-<li>分别计算每个样本到各个聚类中心的距离，将对象分配到距离最近的聚类中。</li>
-<li>所有对象分配完成后，重新计算K个聚类的中心。</li>
-<li>与前一次计算得到的K个聚类中心比较，如果聚类中心发生变化，则继续回到第二个步骤中。</li>
-<li>当质欣不发生变化时停止并输出聚类结果。  </li>
-</ul>
-<p>&emsp; 聚类的结果可能依赖于初始聚类中心的随机选择，使得结果严重偏离全局最优分类。实践中，为了得到较好的结果，通常选择不同的初始聚类中心，多次运行K-Means算法。在所有对象分配完成后，重新计算K个聚类的中心时，对于连续数据，聚类中心取该簇的均值，但是当样本的某些属性是分类变量时，均值可能无定义，可以使用K-众数方法。  </p>
-<ol start="2">
-<li>数据类型与相似性的度量  </li>
-</ol>
-<ul>
-<li>连续属性  </li>
-</ul>
-<p>&emsp; 对于连续属性，要先对各属性值进行零-均值规范，再进行距离的计算。在K-Means聚类算法中，一般需要度量样本之间的距离、样本与簇之间的距离以及簇与簇之间的距离。<br>&emsp;度量样本之间的相似性最常用的是欧几里得距离、曼哈顿距离和闵可夫斯基距离；样本与簇之间的距离可以用样本到簇中心的距离d(ei,x)；簇与簇之间的距离可以用簇中心的距离d(ei,ej)。  </p>
-<p>欧几里得距离：  </p>
-<div align="center"><br><img width="400" src="./欧几里得距离.png"><br></div><br>曼哈顿距离：<br><br><br><div align="center"><br><img width="400" src="./曼哈顿距离.png"><br></div>    
-
-<p>闵可夫斯基距离：</p>
-<div align="center"><br><img width="400" src="./闵可夫斯基距离.png"><br></div>    
-
-<ul>
-<li>文档数据  </li>
-</ul>
-<p>&emsp;对于文档数据使用余弦相似性度量，先将文档数据整理成文档-词矩阵格式。</p>
-<ol start="3">
-<li>目标函数  </li>
-</ol>
-<p>&emsp; 使用误差平方和SSE作为度量聚类质量的目标函数，对于两种不同的聚类结果，选择误差平方和较小的分类结果。</p>
-
+        <h2 id="聚类分析的作用"><a href="#聚类分析的作用" class="headerlink" title="聚类分析的作用"></a>聚类分析的作用</h2><p>&emsp;聚类分析是在没有给定划分类别的情况下，根据数据相似度进行样本分组的一种方法。与分类模型需要使用有标签训练数据不同，聚类模型可以建立在无类标记的数据上，是一种无监督的学习方法。聚类的输入是一组未被标记的样本，聚类根据自身的距离或者相似度将其划分为若干组，划分的原则是组内的距离最小化而组间（外部）距离最大化。<br>
+        
+          <a class="article-more-a" href="/2019/12/30/聚类分析/#more">more >></a>
+        
       
 
       
@@ -676,11 +606,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -760,11 +690,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		
 		</ul>
@@ -963,6 +893,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ML</a>
               </li>
              
@@ -975,10 +909,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NAS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DL</a>
               </li>
              
@@ -987,11 +917,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DataMining</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">DataMining</a>
               </li>
             
             <div class="clearfix"></div>

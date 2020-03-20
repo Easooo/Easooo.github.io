@@ -6,16 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 冰冻西瓜汁没有籽</title>
+  <title>离群点检测 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="ML,NAS,DATA">
-<meta property="og:type" content="website">
-<meta property="og:title" content="冰冻西瓜汁没有籽">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="什么是离群点检测&amp;emsp;离群点检测是数据挖掘中重要的一部分，它的任务是发现与大部分其他对象显著不同的对象，大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含更大的研究价值。    图1 离群点示意图  离群点的大致分类 从数据范围分类    &amp;emsp;数据范围上可以分为全局离群点和局部离群点。从整体来看，某些对象没有离群特征，但是从局部来看，却显示了一定的">
+<meta name="keywords" content="ML,DataMining">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离群点检测">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/离群点检测/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
+<meta property="og:description" content="什么是离群点检测&amp;emsp;离群点检测是数据挖掘中重要的一部分，它的任务是发现与大部分其他对象显著不同的对象，大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含更大的研究价值。    图1 离群点示意图  离群点的大致分类 从数据范围分类    &amp;emsp;数据范围上可以分为全局离群点和局部离群点。从整体来看，某些对象没有离群特征，但是从局部来看，却显示了一定的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/01/14/离群点检测/离群点示意图.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/14/离群点检测/全局离群点和局部离群点.png">
+<meta property="og:updated_time" content="2020-03-20T15:52:30.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冰冻西瓜汁没有籽">
+<meta name="twitter:title" content="离群点检测">
+<meta name="twitter:description" content="什么是离群点检测&amp;emsp;离群点检测是数据挖掘中重要的一部分，它的任务是发现与大部分其他对象显著不同的对象，大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含更大的研究价值。    图1 离群点示意图  离群点的大致分类 从数据范围分类    &amp;emsp;数据范围上可以分为全局离群点和局部离群点。从整体来看，某些对象没有离群特征，但是从局部来看，却显示了一定的">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/14/离群点检测/离群点示意图.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
   
@@ -155,36 +162,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-离群点检测" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/30/聚类分析/" class="archive-article-date">
-  	<time datetime="2019-12-30T12:08:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/30/聚类分析/">聚类分析</a>
+    <h1 class="article-title" itemprop="name">
+      离群点检测
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/01/14/离群点检测/" class="archive-article-date">
+  	<time datetime="2020-01-14T02:36:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是离群点检测"><a href="#什么是离群点检测" class="headerlink" title="什么是离群点检测"></a>什么是离群点检测</h2><p>&emsp;离群点检测是数据挖掘中重要的一部分，它的任务是发现与大部分其他对象显著不同的对象，大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含更大的研究价值。  </p>
+<p><div align="center"><br><img width="300" src="./离群点示意图.png"><br></div></p>
+<center><font size="2">图1 离群点示意图</font></center>
+
+<h2 id="离群点的大致分类"><a href="#离群点的大致分类" class="headerlink" title="离群点的大致分类"></a>离群点的大致分类</h2><ul>
+<li>从数据范围分类  </li>
+</ul>
+<p>&emsp;数据范围上可以分为全局离群点和局部离群点。从整体来看，某些对象没有离群特征，但是从局部来看，却显示了一定的离群性。如图1所示，C是全局离群点，D是局部离群点。</p>
+<p><div align="center"><br><img width="350" src="./全局离群点和局部离群点.png"><br></div></p>
+<center><font size="2">图2 全局离群点和局部离群点</font></center>
+
+
+<ul>
+<li>从数据类型分类  </li>
+</ul>
+<p>&emsp;数据类型上可以分为数值型离群点和分类型离群点，这是以数据集的属性类型进行划分的。</p>
+<ul>
+<li>从属性的个数  </li>
+</ul>
+<p>&emsp;从属性的个数上可以分为一维离群点和多维离群点，因为一个对象可能有一个或多个属性。</p>
+<h2 id="离群点检测方法"><a href="#离群点检测方法" class="headerlink" title="离群点检测方法"></a>离群点检测方法</h2><p>&emsp;常用的离群点检测方法主要有基于统计的方法、基于邻近度的方法、基于密度的方法和基于聚类的方法。下面是常用离群点检测方法：   </p>
+<ul>
+<li>基于统计  </li>
+</ul>
+<p>&emsp;大部分基于统计的离群点检测方法是构建一个概率分布模型，并计算对象符合该模型的概率，把具有极低概率的对象视为离群点。<br>&emsp;基于统计模型的离群点检测方法的前提是必须知道数据服从什么分布，且对于高维数据，检验效果可能很差。  </p>
+<ul>
+<li>基于邻近度  </li>
+</ul>
+<p>&emsp;通常可以在数据对象之间定义邻近性度量值，把远离大部分点的对象视为离群点。<br>&emsp;该方法的优点是比较简单，二维或者三维的数据可以做散点图进行观察。但是大数据集不适用，而且对参数选择较为敏感，具有全局阈值，不能处理具有不同密度区域的数据集。  </p>
+<ul>
+<li>基于密度  </li>
+</ul>
+<p>&emsp;考虑数据集可能存在不同密度区域这一情况，从基于密度的观点分析，离群点是在低密度区域中的对象。一个对象的离群点得分是该对象周围密度的逆。<br>&emsp;该方法的好处是给出了对象是离群点的定量度量，并且即使数据具有不同的区域，也能够很好地进行处理，然而同样不适用大数据集，并且参数选择比较困难。  </p>
+<ul>
+<li>基于聚类  </li>
+</ul>
+<p>&emsp;基于聚类的的离群点检测方法有两种，一种是丢弃远离其他簇的小簇；另一种更系统的方法是首先聚类所有对象，然后评估对象属于簇的程度，即离群点得分。<br>&emsp;基于聚类技术来发现离群点可能是高度有效的，然而聚类算法产生的簇的质量对该算法产生的离群点的质量影响非常大。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,314 +242,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2020/01/14/离群点检测/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/07/Pytorch中的sampler/" class="archive-article-date">
-  	<time datetime="2019-11-07T13:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/30/聚类分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">聚类分析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/07/Pytorch中的sampler/">Pytorch中的sampler</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">torch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/" class="archive-article-date">
-  	<time datetime="2019-09-27T14:28:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/27/Pyotoch中conv函数的group参数及深度可分离卷积/">Pyotoch中conv函数的group参数及深度可分离卷积</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">torch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/17/多标签分类简介/" class="archive-article-date">
-  	<time datetime="2019-09-17T15:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/17/多标签分类简介/">多标签分类简介</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/31/Batch Normalization简介/" class="archive-article-date">
-  	<time datetime="2019-08-31T13:00:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/31/Batch Normalization简介/">Batch Normalization简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NN</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">torch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/11/可微网络结构搜索/" class="archive-article-date">
-  	<time datetime="2019-07-11T13:02:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/11/可微网络结构搜索/">可微网络结构搜索</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">梯度</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/07/NAS综述/" class="archive-article-date">
-  	<time datetime="2019-07-07T14:01:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/NAS综述/">神经网络架构搜索（NAS）综述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NAS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-05T11:36:04.375Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -530,8 +364,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

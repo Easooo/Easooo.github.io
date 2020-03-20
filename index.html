@@ -178,43 +178,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="什么是离群点检测"><a href="#什么是离群点检测" class="headerlink" title="什么是离群点检测"></a>什么是离群点检测</h2><p>&emsp;离群点检测是数据挖掘中重要的一部分，它的任务是发现与大部分其他对象显著不同的对象，大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含更大的研究价值。  </p>
-<p><div align="center"><br><img width="300" src="./离群点示意图.png"><br></div></p>
-<center><font size="2">图1 离群点示意图</font></center>
-
-<h2 id="离群点的大致分类"><a href="#离群点的大致分类" class="headerlink" title="离群点的大致分类"></a>离群点的大致分类</h2><ul>
-<li>从数据范围分类  </li>
-</ul>
-<p>&emsp;数据范围上可以分为全局离群点和局部离群点。从整体来看，某些对象没有离群特征，但是从局部来看，却显示了一定的离群性。如图1所示，C是全局离群点，D是局部离群点。</p>
-<p><div align="center"><br><img width="350" src="./全局离群点和局部离群点.png"><br></div></p>
-<center><font size="2">图2 全局离群点和局部离群点</font></center>
-
-
-<ul>
-<li>从数据类型分类  </li>
-</ul>
-<p>&emsp;数据类型上可以分为数值型离群点和分类型离群点，这是以数据集的属性类型进行划分的。</p>
-<ul>
-<li>从属性的个数  </li>
-</ul>
-<p>&emsp;从属性的个数上可以分为一维离群点和多维离群点，因为一个对象可能有一个或多个属性。</p>
-<h2 id="离群点检测方法"><a href="#离群点检测方法" class="headerlink" title="离群点检测方法"></a>离群点检测方法</h2><p>&emsp;常用的离群点检测方法主要有基于统计的方法、基于邻近度的方法、基于密度的方法和基于聚类的方法。下面是常用离群点检测方法：   </p>
-<ul>
-<li>基于统计  </li>
-</ul>
-<p>&emsp;大部分基于统计的离群点检测方法是构建一个概率分布模型，并计算对象符合该模型的概率，把具有极低概率的对象视为离群点。<br>&emsp;基于统计模型的离群点检测方法的前提是必须知道数据服从什么分布，且对于高维数据，检验效果可能很差。  </p>
-<ul>
-<li>基于邻近度  </li>
-</ul>
-<p>&emsp;通常可以在数据对象之间定义邻近性度量值，把远离大部分点的对象视为离群点。<br>&emsp;该方法的优点是比较简单，二维或者三维的数据可以做散点图进行观察。但是大数据集不适用，而且对参数选择较为敏感，具有全局阈值，不能处理具有不同密度区域的数据集。  </p>
-<ul>
-<li>基于密度  </li>
-</ul>
-<p>&emsp;考虑数据集可能存在不同密度区域这一情况，从基于密度的观点分析，离群点是在低密度区域中的对象。一个对象的离群点得分是该对象周围密度的逆。<br>&emsp;该方法的好处是给出了对象是离群点的定量度量，并且即使数据具有不同的区域，也能够很好地进行处理，然而同样不适用大数据集，并且参数选择比较困难。  </p>
-<ul>
-<li>基于聚类  </li>
-</ul>
-<p>&emsp;基于聚类的的离群点检测方法有两种，一种是丢弃远离其他簇的小簇；另一种更系统的方法是首先聚类所有对象，然后评估对象属于簇的程度，即离群点得分。<br>&emsp;基于聚类技术来发现离群点可能是高度有效的，然而聚类算法产生的簇的质量对该算法产生的离群点的质量影响非常大。</p>
-
+        
+          <a class="article-more-a" href="/2020/01/14/离群点检测/#more">more >></a>
+        
       
 
       
@@ -1019,11 +985,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NAS</a>
+                <a href="javascript:void(0)" class="js-tag color3">梯度</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1032,10 +1002,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataMining</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">梯度</a>
               </li>
             
             <div class="clearfix"></div>

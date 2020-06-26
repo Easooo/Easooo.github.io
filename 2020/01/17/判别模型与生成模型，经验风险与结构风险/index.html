@@ -6,20 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | 冰冻西瓜汁没有籽</title>
+  <title>生成模型与判别模型，经验风险与结构风险 | 冰冻西瓜汁没有籽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="ML,NAS,DATA">
+  <meta name="description" content="&amp;emsp;本文将对ML中的常提到的判别模型与生成模型,经验风险与结构风险进行介绍.">
+<meta name="keywords" content="ML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/07/05/hello-world/index.html">
+<meta property="og:title" content="生成模型与判别模型，经验风险与结构风险">
+<meta property="og:url" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/index.html">
 <meta property="og:site_name" content="冰冻西瓜汁没有籽">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="&amp;emsp;本文将对ML中的常提到的判别模型与生成模型,经验风险与结构风险进行介绍.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-06-20T09:13:28.652Z">
+<meta property="og:image" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/经验损失.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/最小化经验风险.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/结构损失.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/最小化结构风险.png">
+<meta property="og:updated_time" content="2020-06-26T14:08:16.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="生成模型与判别模型，经验风险与结构风险">
+<meta name="twitter:description" content="&amp;emsp;本文将对ML中的常提到的判别模型与生成模型,经验风险与结构风险进行介绍.">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/17/判别模型与生成模型，经验风险与结构风险/经验损失.png">
   
     <link rel="alternative" href="/atom.xml" title="冰冻西瓜汁没有籽" type="application/atom+xml">
   
@@ -159,36 +164,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-判别模型与生成模型，经验风险与结构风险" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      生成模型与判别模型，经验风险与结构风险
     </h1>
   
 
         
-        <a href="/2019/07/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-05T11:36:04.375Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
+        <a href="/2020/01/17/判别模型与生成模型，经验风险与结构风险/" class="archive-article-date">
+  	<time datetime="2020-01-17T12:45:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>&emsp;本文将对ML中的常提到的判别模型与生成模型,经验风险与结构风险进行介绍.<br><a id="more"></a> </p>
+<h2 id="生成模型与判别模型"><a href="#生成模型与判别模型" class="headerlink" title="生成模型与判别模型"></a>生成模型与判别模型</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><ul>
+<li>生成模型 </li>
+</ul>
+<p>&emsp;生成模型计算的是联合概率分布, P(Y,X)=P(Y|X)P(X), 由数据学习联合概率密度分布P(X,Y), 然后求出条件概率分布P(Y|X)作为预测的模型, 其基本思想是首先建立样本的联合概率概率密度模型P(X,Y), 然后再得到后验概率P(Y|X), 再利用它进行分类. 生成方法关心的是给定输入x产生输出y的生成关系.</p>
+<p>&emsp;一句话概括: 生成模型学习得到联合概率分布P(x,y)，即特征x和标记y共同出现的概率，然后求条件概率分布。能够学习到数据生成的机制.</p>
+<ul>
+<li>判别模型  </li>
+</ul>
+<p>&emsp;判别模型估计的是条件概率分布, P(Y|X), 是给定观测变量x和目标变量y的条件模型. 它可以由数据直接学习决策函数Y=f(X)或者将条件概率分布P(Y|X)作为预测. 判别方法关心的是对于给定的输入X. 应该预测什么样的输出Y.</p>
+<p>&emsp;一句话概括: 判别模型学习得到条件概率分布P(Y|X), 即在特征x出现的情况下标记Y出现的概率.</p>
+<p>举个例子, 比如说要确定一只羊是山羊还是绵羊: </p>
+<p>&emsp; 用判别模型的方法: 先从历史数据中学习到模型, 然后通过提取这只羊的特征x来预测出这只羊f(X)是山羊的概率或者是绵羊的概率.<br>&emsp; 如果用生成模型的方法: 可以根据山羊的特征首先学习出一个山羊模型, 然后根据绵羊的特征学习出一个绵羊模型. 然后从这只羊中提取特征, 放到山羊模型P(w1|X)中看概率是多少, 再放到绵羊模型P(w2|X)中看概率是多少, 如果P(w1|X)&gt;P(w2|X), 那么我们就认为X是属于w1类, 即该羊属于山羊.  </p>
+<p>来源: <a href="https://blog.csdn.net/zl3090/article/details/82683889" target="_blank" rel="noopener">https://blog.csdn.net/zl3090/article/details/82683889</a></p>
+<h3 id="2-生成模型的优缺点"><a href="#2-生成模型的优缺点" class="headerlink" title="2. 生成模型的优缺点"></a>2. 生成模型的优缺点</h3><ul>
+<li><p>优点:<br>(1) 可以由生成模型的联合分布计算条件分布或者边缘分布, 也就是说生成模型获得的信息更加丰富.<br>(2) 生成模型的收敛速度较快, 当样本数量较多时, 可以更快地收敛于真实模型.<br>(3) 模型可以通过增量学习得到, 并且能用于数据不完整的情况.<br>(4) 能够处理存在隐变量的情况. </p>
+</li>
+<li><p>缺点:<br>虽然生成模型能够提供更多的信息, 但需要更多的样本和更多的计算.</p>
+</li>
+</ul>
+<h3 id="3-判别模型的优缺点"><a href="#3-判别模型的优缺点" class="headerlink" title="3. 判别模型的优缺点"></a>3. 判别模型的优缺点</h3><ul>
+<li><p>优点:<br>(1) 节省计算资源, 需要的样本数量少于生成模型.<br>(2) 准确率较高<br>(3) 直接学习条件概率, 因此可以对输入进行降维, 简化问题.<br>(4) 能够清楚地体现出类别之间的差异  </p>
+</li>
+<li><p>缺点:<br>不能反映数据本身的特性. </p>
+</li>
+</ul>
+<h3 id="4-具体模型和方法"><a href="#4-具体模型和方法" class="headerlink" title="4. 具体模型和方法"></a>4. 具体模型和方法</h3><ul>
+<li>生成模型的具体模型和方法有: 朴素贝叶斯, 混合高斯模型, 隐马尔科夫模型等.  </li>
+<li>判别模型的具体模型和方法有: 感知机, KNN算法, 决策树, 逻辑斯蒂回归, 支持向量机, boosting算法, 条件随机场等.  </li>
+</ul>
+<p>&emsp;<br>&emsp; </p>
+<h2 id="经验风险和结构风险"><a href="#经验风险和结构风险" class="headerlink" title="经验风险和结构风险"></a>经验风险和结构风险</h2><h3 id="1-经验风险"><a href="#1-经验风险" class="headerlink" title="1. 经验风险"></a>1. 经验风险</h3><p>模型f关于训练集的平均损失称为经验风险或者经验损失, 计算式如下所示: </p>
+<div align="center"><br><img width="300" src="./经验损失.png"><br></div>   
+
+<p>在假设空间、损失函数以及训练数据集确定的情况下, 经验风险函数可以确定. 经验风险最小化(empirical risk minimization, ERM) 的策略认为, 经验风险最小的模型就是最优的模型, 那么按照经验风险最小化求最优模型就是求解最优化问题：</p>
+<div align="center"><br><img width="250" src="./最小化经验风险.png"><br></div>   
+
+<p>当样本容量足够大的时, 经验风险最小化能保证有很好的学习效果。</p>
+<h3 id="2-结构风险"><a href="#2-结构风险" class="headerlink" title="2. 结构风险"></a>2. 结构风险</h3><p>&emsp;当样本容量小的的时候, 经验风险最小化的效果未必很好, 容易产生过拟合为了防止过拟合, 提出了结构风险最小化的策略. 结构风险最小化(structural risk minimization, SRM) 等价于正则化 (regularization). 结构风险在经验风险上加上表示模型复杂度的正则化项, 在假定空间、损失函数以及训练数据集确定的情况下，结构风险的定义：</p>
+<div align="center"><br><img width="320" src="./结构损失.png"><br></div>   
+
+<p>&emsp; 其中J(f)为模型的复杂度, 是定义在假设空间F上的泛函. 模型越复杂, 复杂度J(f)就会越大; 反之, 模型越简单, 复杂度就小. 结构风险最小化的策略认为结构风险最小的模型就是最优的模型，所以求最优模型，就是求解最优化问题:</p>
+<div align="center"><br><img width="300" src="./最小化结构风险.png"><br></div>   
+
+<p>&emsp; 传统机器学习方法中普遍采用的经验风险最小化原则在样本数目有限时是不合理的. 机器学习过程不但要使经验风险最小, 还要使VC维尽量小以缩小置信范围, 才能取得较小的实际风险, 即对未来样本有较好的推广性. 在有限训练样本下, 学习机器的VC维越高则置信范围越大, 真实风险与经验风险之间可能的差别越大. 这就是为什么会出现过学习现象的原因. 因此结构风险的考虑才是准确衡量机器学习模型的准确性.</p>
 
       
 
@@ -197,6 +237,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -247,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2019/07/05/hello-world/" alt="微信分享二维码">
+      <img src="https://img.fanhaobai.com/qrcode.php?url=http://easooo.github.io/2020/01/17/判别模型与生成模型，经验风险与结构风险/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,15 +312,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/07/NAS综述/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/01/18/统计学常用检验方法简介/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          神经网络架构搜索（NAS）综述
+          统计学常用检验方法简介
         
       </div>
     </a>
   
+  
+    <a href="/2020/01/14/离群点检测/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">离群点检测</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
